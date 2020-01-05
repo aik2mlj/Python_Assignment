@@ -338,15 +338,12 @@ int abs_compare(const Bigint &ob1, const Bigint &ob2) {
 Bigint float_to_int(double that) {
     Bigint res;
     res.num.clear();
-    int x = 0;
-    if(that - floor(that) >= 0.5) x = 1; // 四舍五入
     if(that < 0) res.positive = 0, that *= -1;
     while(that >= 1.0) {
         res.num.push_back(int(that - floor(that / 10) * 10));
         ++res.len;
         that /= 10;
     }
-    res += x;
     res.fit();
     return res;
 }
